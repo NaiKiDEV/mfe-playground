@@ -1,8 +1,8 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
+const { dependencies } = require('../package.json');
 
 module.exports = {
-  entry: path.resolve(__dirname, '..', './src/index.tsx'),
+  entry: './src/index',
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
@@ -20,12 +20,33 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, '..', './build'),
-    filename: 'bundle.js',
+    publicPath: 'auto',
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', './src/index.html'),
+    new ModuleFederationPlugin({
+      name: 'rates',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './transaction-rates': './src/components/transaction-rates',
+        './state': './src/states/state',
+        './configure': './src/configure',
+      },
+      remotes: {
+        event_bus: 'event_bus@http://localhost:3099/remoteEntry.js',
+      },
+      shared: {
+        ...dependencies,
+        react: {
+          singleton: true,
+          eager: true,
+          requiredVersion: dependencies['react'],
+        },
+        'react-dom': {
+          singleton: true,
+          eager: true,
+          requiredVersion: dependencies['react-dom'],
+        },
+      },
     }),
   ],
   stats: 'errors-only',

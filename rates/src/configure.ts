@@ -1,5 +1,5 @@
 import { Store } from '@reduxjs/toolkit';
-import { EventBus } from '../event-bus';
+import { EventBus } from 'event_bus/event-bus';
 import { Transaction } from './models';
 import { addTransaction, clearRates } from './states';
 

@@ -4,7 +4,7 @@ import { Portal } from './portal';
 import { store } from './store';
 import { EventBus } from 'event_bus/event-bus';
 // import { configureConverter } from './converter/configure';
-// import { configureRates } from './rates/configure';
+import { configureRates } from 'rates/configure';
 
 const eventBus = new EventBus();
 
@@ -18,6 +18,8 @@ window.eventBus.subscribe({
     console.log('Transaction detected: ', transaction);
   },
 });
+
+configureRates(window.eventBus, store);
 
 ReactDOM.render(
   <Provider store={store}>

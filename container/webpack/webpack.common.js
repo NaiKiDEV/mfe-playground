@@ -36,11 +36,23 @@ module.exports = {
   output: {
     publicPath: 'auto',
   },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: 1,
+          name: 'vendors',
+        },
+      },
+    },
+  },
   plugins: [
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {
         exchange: 'exchange@http://localhost:4001/remoteEntry.js',
+        rates: 'rates@http://localhost:4002/remoteEntry.js',
         event_bus: 'event_bus@http://localhost:4099/remoteEntry.js',
       },
       shared: {

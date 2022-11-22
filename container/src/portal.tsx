@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 // import { TotalTransactions } from './converter';
 const Transactions = lazy(() => import('exchange/transactions'));
+const RateList = lazy(() => import('rates/transaction-rates'));
 // import { RateList } from './rates';
 
 const Portal = () => {
@@ -16,10 +17,12 @@ const Portal = () => {
       <Suspense fallback={'loading...'}>
         <Transactions />
       </Suspense>
-      {/* <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        <TotalTransactions />
-        <RateList />
-      </div> */}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+        {/* <TotalTransactions /> */}
+        <Suspense fallback={'loading...'}>
+          <RateList />
+        </Suspense>
+      </div>
     </div>
   );
 };

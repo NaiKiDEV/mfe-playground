@@ -25,10 +25,10 @@ const RateList = () => {
           }}
         >
           {rates.map((rate) => (
-            <>
+            <div key={rate.name}>
               <div>{rate.name}</div>
               <div>{rate.rate.toFixed(2)}</div>
-            </>
+            </div>
           ))}
         </div>
       ) : (
@@ -38,4 +38,4 @@ const RateList = () => {
   );
 };
 
-export { RateList };
+export default RateList;
