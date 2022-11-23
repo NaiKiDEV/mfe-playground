@@ -8,7 +8,7 @@ import {
 } from '../states';
 
 const generateRandomTransaction = (): Transaction => {
-  const randomValue = +(Math.random() * 3).toFixed(2);
+  const randomValue = +(Math.random() * 3).toFixed(6);
   return {
     name: 'BTC',
     value: randomValue,
@@ -35,7 +35,7 @@ const TransactionPage = () => {
   return (
     <div style={{ display: 'flex', gap: 6, flexDirection: 'column' }}>
       <button onClick={handleAddTransaction}>Add transaction</button>
-      <button onClick={handleClearTransaction}>Clear transaction</button>
+      <button onClick={handleClearTransaction}>Clear transactions</button>
       <TransactionHistory data={transactionHistory} />
     </div>
   );

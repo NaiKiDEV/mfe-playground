@@ -1,5 +1,4 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../store';
 import { Rate, Transaction } from '../models';
 
 const name = 'rates';
@@ -49,8 +48,9 @@ const rateSlice = createSlice({
   },
 });
 
-const selectTransactionTotal = (data: RootState) => data.rates.transactionTotal;
-const selectRates = (data: RootState) => data.rates.rates;
+const selectTransactionTotal = (state: { rates: ConverterState }) =>
+  state.rates.transactionTotal;
+const selectRates = (state: { rates: ConverterState }) => state.rates.rates;
 
 export {
   rateSlice,

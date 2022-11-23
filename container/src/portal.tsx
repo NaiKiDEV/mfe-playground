@@ -1,8 +1,9 @@
 import { lazy, Suspense } from 'react';
-// import { TotalTransactions } from './converter';
+const TotalTransactions = lazy(
+  () => import('converter/total-transactions-widget')
+);
 const Transactions = lazy(() => import('exchange/transactions'));
 const RateList = lazy(() => import('rates/transaction-rates'));
-// import { RateList } from './rates';
 
 const Portal = () => {
   return (
@@ -14,12 +15,14 @@ const Portal = () => {
         gap: 6,
       }}
     >
-      <Suspense fallback={'loading...'}>
+      <Suspense fallback={'Loading Transaction...'}>
         <Transactions />
       </Suspense>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-        {/* <TotalTransactions /> */}
-        <Suspense fallback={'loading...'}>
+        <Suspense fallback={'Loading Transaction Widget...'}>
+          <TotalTransactions />
+        </Suspense>
+        <Suspense fallback={'Loading Rate List...'}>
           <RateList />
         </Suspense>
       </div>

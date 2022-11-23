@@ -32,7 +32,7 @@ module.exports = {
         './configure': './src/configure',
       },
       remotes: {
-        event_bus: 'event_bus@http://localhost:3099/remoteEntry.js',
+        'event-bus': 'event_bus@http://localhost:3099/remoteEntry.js',
       },
       shared: {
         ...dependencies,

@@ -2,9 +2,9 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Portal } from './portal';
 import { store } from './store';
-import { EventBus } from 'event_bus/event-bus';
-// import { configureConverter } from './converter/configure';
+import { EventBus } from 'event-bus/event-bus';
 import { configureRates } from 'rates/configure';
+import { configureConverter } from 'converter/configure';
 
 const eventBus = new EventBus();
 
@@ -20,6 +20,7 @@ window.eventBus.subscribe({
 });
 
 configureRates(window.eventBus, store);
+configureConverter(window.eventBus, store);
 
 ReactDOM.render(
   <Provider store={store}>

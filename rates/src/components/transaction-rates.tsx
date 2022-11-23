@@ -15,7 +15,7 @@ const RateList = () => {
         border: '1px solid green',
       }}
     >
-      <div style={{ fontWeight: 'bold' }}>Most popular rates:</div>
+      <div style={{ fontWeight: 'bold' }}>Balance in most popular rates:</div>
       {!!rates.length ? (
         <div
           style={{
@@ -26,7 +26,7 @@ const RateList = () => {
         >
           {rates.map((rate) => (
             <div key={rate.name}>
-              <div>{rate.name}</div>
+              <div style={{ fontWeight: 'bold' }}>{rate.name}</div>
               <div>{rate.rate.toFixed(2)}</div>
             </div>
           ))}

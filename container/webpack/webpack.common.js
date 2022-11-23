@@ -53,7 +53,8 @@ module.exports = {
       remotes: {
         exchange: 'exchange@http://localhost:4001/remoteEntry.js',
         rates: 'rates@http://localhost:4002/remoteEntry.js',
-        event_bus: 'event_bus@http://localhost:4099/remoteEntry.js',
+        converter: 'converter@http://localhost:4003/remoteEntry.js',
+        'event-bus': 'event_bus@http://localhost:4099/remoteEntry.js',
       },
       shared: {
         ...dependencies,
